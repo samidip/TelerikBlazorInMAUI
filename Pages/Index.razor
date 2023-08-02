@@ -1,0 +1,79 @@
+﻿@page "/"
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+<TelerikButton>I'm a Telerik Button!</TelerikButton>
+
+<TelerikBarcode Width="300px"
+                Height="200px"
+                Value="123456789">
+</TelerikBarcode>
+
+<TelerikCalendar Min="@min" Max="@max" @bind-Date="@theDate">
+</TelerikCalendar>
+
+<TelerikDatePicker @bind-Value="datePickerValue"
+                   Format="dd MMMM yyyy"
+                   Min="@min" Max="@max" AdaptiveMode="AdaptiveMode.Auto">
+</TelerikDatePicker>
+The selected date is: @datePickerValue.ToShortDateString()
+<br />
+
+<TelerikCircularGauge Width="300px" Height="300px">
+
+    <CircularGaugePointers>
+        <CircularGaugePointer Value="30" Size="10" />
+    </CircularGaugePointers>
+
+    <CircularGaugeCenterLabel>
+        <Template>
+            @{
+                var pointer = context.Pointers.FirstOrDefault();
+
+                <div style="font-weight: bold; font-size:30px">@pointer.Value</div>
+            }
+        </Template>
+    </CircularGaugeCenterLabel>
+
+</TelerikCircularGauge>
+
+<br />
+
+<TelerikCard Width="300px">
+    <CardHeader>
+        <CardTitle>Tourism</CardTitle>
+    </CardHeader>
+    <CardImage Src="https://docs.telerik.com/blazor-ui/components/card/images/rome.jpg"></CardImage>
+    <CardBody>
+        <CardTitle>Rome</CardTitle>
+        <CardSubTitle>Capital of Italy</CardSubTitle>
+        <CardSeparator></CardSeparator>
+        <p>
+            Rome is a sprawling, cosmopolitan city with nearly 3,000 years of globally influential art, architecture and culture on display.
+
+            Ancient ruins such as the Forum and the Colosseum evoke the power of the former Roman Empire.
+        </p>
+    </CardBody>
+    <CardActions Layout="@CardActionsLayout.Stretch">
+        <TelerikButton Class="k-flat" Title="Like">Like</TelerikButton>
+        <TelerikButton Class="k-flat" Title="Comment">Comment</TelerikButton>
+        <TelerikButton Class="k-flat">Read More</TelerikButton>
+    </CardActions>
+    <CardFooter>
+        <span style="float:left">Created by @@john</span>
+        <span style="float:right">March 05, 2021</span>
+    </CardFooter>
+</TelerikCard>
+
+
+@code {
+    private DateTime min = new DateTime(2020, 1, 1);
+    private DateTime max = new DateTime(2030, 12, 31);
+    private DateTime theDate { get; set; } = DateTime.Now;
+    DateTime datePickerValue { get; set; } = DateTime.Now;
+}
+
